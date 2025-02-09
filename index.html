@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر إلكتروني</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+	    body {
+    font-family: 'Cairo', Arial, sans-serif; /* نوع الخط المستخدم */
+    
+}
+        :root {
+            --main-blue: #007bff;
+            --main-orange: #ff6b35;
+            --border-color: #ddd;
+        }
+		
+
+/* شريط التنقل */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    padding: 15px 20px;
+    color: white;
+}
+
+/* الشعار */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* الروابط */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 8px 12px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* زر القائمة للجوال */
+.menu-btn {
+    display: none;
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* تصميم القائمة في الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #007bff;
+        padding: 10px;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+}
+
+
+
+        /* تحديد عرض الصفحة */
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .news-bar {
+            background: #000;
+            color: white;
+            padding: 8px 0;
+            font-size: 0.9em;
+        }
+
+        /* تنسيق السلايدر الرئيسي */
+        .main-slider {
+            height: 400px;
+            background: #f8f9fa;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .thumbnails {
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px;
+            margin: 15px 0;
+        }
+
+        .thumbnails img {
+            width: 80px;
+            height: 60px;
+            cursor: pointer;
+            margin: 5px;
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+       /* إضافة هذه التعديلات في الـ CSS */
+.product-card {
+    margin-bottom: 40px;
+    border-bottom: 1px solid #eee !important;
+    padding-bottom: 30px;
+}
+
+.product-main-img {
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.product-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.product-price {
+    font-size: 2rem;
+    color: var(--main-orange);
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .product-main-img {
+        height: 300px;
+        margin-bottom: 1.5rem;
+    }
+    
+    .product-title {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+    
+    .product-description {
+        text-align: center;
+        font-size: 1rem;
+    }
+    
+    .product-price {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+    
+    .buy-btn {
+        width: 100%;
+    }
+}
+
+/* إضافة هذه التعديلات في الـ CSS */
+.load-more-bar {
+    background: #000;
+    border-radius: 26px;
+    width: 990px;
+    height: 52px;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.load-more-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white !important;
+    font-size: 1.2rem;
+    padding: 8px 30px;
+    border: 2px solid white !important;
+    border-radius: 25px;
+    transition: all 0.3s;
+}
+
+.load-more-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+@media (max-width: 1200px) {
+    .load-more-bar {
+        width: 95%;
+        max-width: 990px;
+    }
+}
+
+@media (max-width: 768px) {
+    .load-more-btn {
+        font-size: 1rem;
+        padding: 6px 20px;
+    }
+}
+
+
+        .text-slider {
+            border-top: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
+            margin: 30px 0;
+            padding: 20px 0;
+        }
+
+        .buy-btn {
+            background: var(--main-blue);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            margin: 10px 0;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0;
+            margin-top: 100px;
+        }
+
+        /* منع التداخل في الشاشات الكبيرة */
+        @media (min-width: 1200px) {
+            .page-container {
+                padding: 0;
+            }
+        }
+		
+		.load-more-bar {
+    background: #000;
+    border-radius: 26px;
+    width: 990px;
+    height: 52px;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.load-more-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white !important;
+    font-size: 1.2rem;
+    padding: 8px 30px;
+    border: 2px solid white !important;
+    border-radius: 25px;
+    transition: all 0.3s;
+}
+
+.load-more-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+@media (max-width: 1200px) {
+    .load-more-bar {
+        width: 95%;
+        max-width: 990px;
+    }
+}
+
+@media (max-width: 768px) {
+    .load-more-btn {
+        font-size: 1rem;
+        padding: 6px 20px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+        <div class="logo">Logo</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#featured-products">المنتجات المميزة</a></li>
+            <li><a href="#faq">لأسئلة الشائعة</a></li>
+            <li><a href="#">حول</a></li>
+            <li><a href="#">اتصل بنا</a></li>
+        </ul>
+        <button class="menu-btn" id="menuBtn">&#9776;</button> <!-- أيقونة القائمة ☰ -->
+    </nav>
+
+<!-- المحتوى الرئيسي -->
+<div class="page-container">
+
+    <!-- اللوجو -->
+    <div class="text-center py-4">
+        <img src="logo.png" alt="اللوجو" style="height: 80px;">
+    </div>
+
+    <!-- السلايدر الرئيسي -->
+    <div id="mainSlider" class="carousel slide main-slider" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="slide1.jpg" class="d-block w-100" style="object-fit: cover; height: 396px;" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="slide2.jpg" class="d-block w-100" style="object-fit: cover; height: 396px;" alt="...">
+            </div>
+        </div>
+    </div>
+
+    <!-- الثمبنيلات -->
+    <div class="thumbnails text-center">
+        <img src="slide1-thumb.jpg" class="active" onclick="changeSlide(0)">
+        <img src="slide2-thumb.jpg" onclick="changeSlide(1)">
+    </div>
+
+
+<!-- نهاية page-container -->
+
+<!-- الجزء 1: المنتجات الظاهرة (3 منتجات) -->
+<div class="container mt-5">
+    <h2 id="featured-products" class="text-center mb-4">المنتجات المميزة</h2>
+    <div class="row g-4">
+        <!-- المنتج 1 -->
+        <div class="col-12">
+            <div class="product-card">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-6 order-md-2">
+                        <img src="product1.jpg" class="product-main-img" alt="منتج 1">
+                    </div>
+                    <div class="col-md-6 order-md-1 p-4">
+                        <h1 class="product-title">اسم المنتج 1</h1>
+                        <p class="product-description">وصف المنتج الأول...</p>
+                        <p class="product-price">$100.00</p>
+                        <button class="btn buy-btn">اشتري الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- المنتج 2 -->
+        <div class="col-12">
+            <div class="product-card">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-6 order-md-2">
+                        <img src="product2.jpg" class="product-main-img" alt="منتج 2">
+                    </div>
+                    <div class="col-md-6 order-md-1 p-4">
+                        <h1 class="product-title">اسم المنتج 2</h1>
+                        <p class="product-description">وصف المنتج الثاني...</p>
+                        <p class="product-price">$200.00</p>
+                        <button class="btn buy-btn">اشتري الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- المنتج 3 -->
+        <div class="col-12">
+            <div class="product-card">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-6 order-md-2">
+                        <img src="product3.jpg" class="product-main-img" alt="منتج 3">
+                    </div>
+                    <div class="col-md-6 order-md-1 p-4">
+                        <h1 class="product-title">اسم المنتج 3</h1>
+                        <p class="product-description">وصف المنتج الثالث...</p>
+                        <p class="product-price">$300.00</p>
+                        <button class="btn buy-btn">اشتري الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- الجزء 2: المنتجات المخفية -->
+<div class="container mt-5">
+    <div class="row g-4">
+        <!-- المنتج 4 -->
+        <div class="col-12 hidden-product d-none">
+            <div class="product-card">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-6 order-md-2">
+                        <img src="product_image4.jpg" class="product-main-img" alt="منتج 4">
+                    </div>
+                    <div class="col-md-6 order-md-1 p-4">
+                        <h1 class="product-title">منتج 4</h1>
+                        <p class="product-description">وصف المنتج الرابع</p>
+                        <p class="product-price">$400.00</p>
+                        <button class="btn buy-btn">اشتري الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- المنتج 5 -->
+        <div class="col-12 hidden-product d-none">
+            <div class="product-card">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-6 order-md-2">
+                        <img src="product_image5.jpg" class="product-main-img" alt="منتج 5">
+                    </div>
+                    <div class="col-md-6 order-md-1 p-4">
+                        <h1 class="product-title">منتج 5</h1>
+                        <p class="product-description">وصف المنتج الخامس</p>
+                        <p class="product-price">$500.00</p>
+                        <button class="btn buy-btn">اشتري الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- المنتج 6 -->
+        <div class="col-12 hidden-product d-none">
+            <div class="product-card">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-6 order-md-2">
+                        <img src="product_image6.jpg" class="product-main-img" alt="منتج 6">
+                    </div>
+                    <div class="col-md-6 order-md-1 p-4">
+                        <h1 class="product-title">منتج 6</h1>
+                        <p class="product-description">وصف المنتج السادس</p>
+                        <p class="product-price">$600.00</p>
+                        <button class="btn buy-btn">اشتري الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+
+<!-- الجزء3: المنتجات المخفية -->
+<div class="container mt-5">
+    <div class="row g-4">
+        <!-- المنتج 5 -->
+        <div class="col-12 hidden-product d-none">
+            <div class="product-card">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-6 order-md-2">
+                        <img src="product_image5.jpg" class="product-main-img" alt="منتج 5">
+                    </div>
+                    <div class="col-md-6 order-md-1 p-4">
+                        <h1 class="product-title">منتج 5</h1>
+                        <p class="product-description">وصف المنتج الرابع</p>
+                        <p class="product-price">$400.00</p>
+                        <button class="btn buy-btn">اشتري الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- المنتج 6 -->
+        <div class="col-12 hidden-product d-none">
+            <div class="product-card">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-6 order-md-2">
+                        <img src="product_image6.jpg" class="product-main-img" alt="منتج 6">
+                    </div>
+                    <div class="col-md-6 order-md-1 p-4">
+                        <h1 class="product-title">منتج 6</h1>
+                        <p class="product-description">وصف المنتج الخامس</p>
+                        <p class="product-price">$500.00</p>
+                        <button class="btn buy-btn">اشتري الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- المنتج 7 -->
+        <div class="col-12 hidden-product d-none">
+            <div class="product-card">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-6 order-md-2">
+                        <img src="product_image7.jpg" class="product-main-img" alt="منتج 7">
+                    </div>
+                    <div class="col-md-6 order-md-1 p-4">
+                        <h1 class="product-title">منتج 7</h1>
+                        <p class="product-description">وصف المنتج السادس</p>
+                        <p class="product-price">$600.00</p>
+                        <button class="btn buy-btn">اشتري الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<!-- الجزء3: المنتجات المخفية -->
+<div class="container mt-5">
+    <div class="row g-4">
+        <!-- المنتج 8 -->
+        <div class="col-12 hidden-product d-none">
+            <div class="product-card">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-6 order-md-2">
+                        <img src="product_image8.jpg" class="product-main-img" alt="منتج 8">
+                    </div>
+                    <div class="col-md-6 order-md-1 p-4">
+                        <h1 class="product-title">منتج 8</h1>
+                        <p class="product-description">وصف المنتج التامن</p>
+                        <p class="product-price">$300.00</p>
+                        <button class="btn buy-btn">اشتري الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- المنتج 9 -->
+        <div class="col-12 hidden-product d-none">
+            <div class="product-card">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-6 order-md-2">
+                        <img src="product_image9.jpg" class="product-main-img" alt="منتج 9">
+                    </div>
+                    <div class="col-md-6 order-md-1 p-4">
+                        <h1 class="product-title">منتج 9</h1>
+                        <p class="product-description">وصف المنتج التاسع</p>
+                        <p class="product-price">$500.00</p>
+                        <button class="btn buy-btn">اشتري الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- المنتج 10 -->
+        <div class="col-12 hidden-product d-none">
+            <div class="product-card">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-6 order-md-2">
+                        <img src="product_image10.jpg" class="product-main-img" alt="منتج 10">
+                    </div>
+                    <div class="col-md-6 order-md-1 p-4">
+                        <h1 class="product-title">منتج 10</h1>
+                        <p class="product-description">وصف المنتج االعاشر</p>
+                        <p class="product-price">$600.00</p>
+                        <button class="btn buy-btn">اشتري الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- زر "عرض المزيد" -->
+    <div class="load-more-bar">
+        <button class="load-more-btn" onclick="loadMoreProducts()">عرض المزيد</button>
+    </div>
+</div>
+
+
+
+
+
+<!-- الأسئلة الشائعة -->
+<div class="container py-5">
+    <h3 id="faq" class="text-center mb-4">الأسئلة الشائعة</h3>
+    <div class="accordion" id="faqAccordion">
+        
+        <!-- السؤال الأول -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#question1">
+                    كيف أستطيع الدفع؟
+                </button>
+            </h2>
+            <div id="question1" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    نقدم عدة طرق دفع آمنة...
+                </div>
+            </div>
+        </div>
+
+        <!-- السؤال الثاني -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#question2">
+                    ما هي طرق الشحن المتاحة؟
+                </button>
+            </h2>
+            <div id="question2" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    نحن نقدم خيارات شحن متعددة...
+                </div>
+            </div>
+        </div>
+
+        <!-- السؤال الثالث -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#question3">
+                    هل يوجد دعم فني؟
+                </button>
+            </h2>
+            <div id="question3" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    نعم، نحن نقدم دعمًا فنيًا على مدار الساعة...
+                </div>
+            </div>
+        </div>
+		
+		<!-- السؤال الرابع -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#question4">
+                    هل يوجد دعم فني؟
+                </button>
+            </h2>
+            <div id="question4" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    نعم، نحن نقدم دعمًا فنيًا على مدار الساعة...
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- الفوتر -->
+<footer>
+    <div class="page-container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <h4>تواصل معنا</h4>
+                <p>info@example.com<br>+123456789</p>
+            </div>
+            <div class="col-md-4">
+                <h4>النشرة البريدية</h4>
+                <input type="email" class="form-control" placeholder="ادخل بريدك الإلكتروني">
+            </div>
+            <div class="col-md-4">
+                <h4>وسائل التواصل</h4>
+                <div class="social-icons">
+                    <i class="fab fa-facebook mx-2"></i>
+                    <i class="fab fa-twitter mx-2"></i>
+                    <i class="fab fa-instagram mx-2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- باقي السكريبتات -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // دالة لتبديل الصور بالثمبنيلات
+function changeSlide(index) {
+    const carousel = new bootstrap.Carousel(document.getElementById('mainSlider'));
+    carousel.to(index);
+    
+    // تحديث الثمبنيل النشط
+    document.querySelectorAll('.thumbnails img').forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+        img.style.borderColor = i === index ? 'var(--main-blue)' : 'var(--border-color)';
+    });
+}
+
+let currentIndex = 3; // نبدأ من عرض 3 منتجات
+    const productsPerClick = 3; // عدد المنتجات التي ستظهر عند الضغط على الزر
+
+    function loadMoreProducts() {
+        // الحصول على المنتجات المخفية
+        const hiddenProducts = document.querySelectorAll('.hidden-product');
+        
+        // عرض 3 منتجات إضافية في كل مرة
+        for (let i = currentIndex; i < currentIndex + productsPerClick; i++) {
+            if (hiddenProducts[i]) {
+                hiddenProducts[i].classList.remove('d-none');
+            }
+        }
+        
+        // تحديث الفهرس لعرض المزيد في المرة القادمة
+        currentIndex += productsPerClick;
+        
+        // إذا كانت جميع المنتجات تم عرضها، إخفاء زر "عرض المزيد"
+        if (currentIndex >= hiddenProducts.length) {
+            document.querySelector('.load-more-btn').style.display = 'none';
+        }
+    }
+
+
+
+
+
+document.getElementById("menuBtn").addEventListener("click", function () {
+    document.getElementById("navLinks").classList.toggle("show");
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+        e.preventDefault(); // يمنع الانتقال الفوري
+        const targetId = this.getAttribute("href"); // احصل على الـ ID
+        const targetElement = document.querySelector(targetId); // ابحث عن العنصر المطلوب
+
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 50, // تعديل المسافة إذا كان هناك Navbar ثابت
+                behavior: "smooth" // تمرير سلس
+            });
+        }
+    });
+});
+
+
+    </script>
+
+</body>
+</html>
